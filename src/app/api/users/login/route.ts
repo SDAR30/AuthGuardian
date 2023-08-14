@@ -8,10 +8,10 @@ connect()
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
-        const { email, password } = reqBody;
+        const { username, password } = reqBody;
         console.log(reqBody)
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
 
         if (!user) {
             return NextResponse.json({ error: "USERR don't exist" }, { status: 400 });
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         // cookie is like a hand stamp at an amusement park, storing information persistently, 
         // even between visits, and can have added security features like being invisible to others (HTTP-only)
 
-        const tokenData = { id: user._id, username: user.username, email: user.email }
+        const tokenData = { id: user._id, username: user.username, username: user.username }
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, { expiresIn: "1d" });
 
         //JSON response obj created that is sent to client to inform of succesful login
