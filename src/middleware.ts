@@ -12,7 +12,7 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/', request.nextUrl));
     }
 
-    if(!isPublicPaths && !token){
+    if(!isPublicPaths && !token){ // if not logged in, start at login
         return NextResponse.redirect(new URL('/login', request.nextUrl))
     }
 
