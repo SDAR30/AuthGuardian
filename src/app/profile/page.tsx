@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function ProfilePage() {
     const router = useRouter();
-    const [data, setData] = useState('nothing');
+    const [data, setData] = useState('');
 
     const logout = async () => {
         try {
@@ -36,7 +36,7 @@ export default function ProfilePage() {
             <hr />
             <p>Profile page</p>
             <hr />
-            <h2 className="p-3 rounded bg-green-500">{data === "nothing" ? "NOTTHING" : <Link href={`/profile/${data}`}>{data}</Link>}</h2>
+            <h2 className="p-3 rounded bg-green-500">{!data ? "-----" : <Link href={`/profile/${data}`}>{data}</Link>}</h2>
             <hr />
             <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onClick={logout}
