@@ -8,6 +8,15 @@ export function middleware(request: NextRequest) {
     const isPublicPaths = path === '/login' || path === '/signup';
     //either token exists, or get '';
     const token = request.cookies.get('token')?.value || '';
+
+    const isNewUser = request.cookies.get('isNewUser')?.value || '';
+
+     // If user is new (isNewUser cookie doesn't exist), redirect to signup
+     if (!isNewUser && !isPublicPaths) {
+        // Set the isNewUser cookie for future visits
+        return NextResponse.redirect(new URL('/signup', request.nextUrl));
+    }
+
     if(isPublicPaths && token){
         return NextResponse.redirect(new URL('/', request.nextUrl));
     }

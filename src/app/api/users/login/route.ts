@@ -5,7 +5,6 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 connect()
-
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
@@ -43,6 +42,10 @@ export async function POST(request: NextRequest) {
         response.cookies.set("token", token, {
             httpOnly: true, //cookie can only be accessed by server
         })
+         // Set the isNewUser cookie
+        response.cookies.set("isNewUser", "true", {
+            maxAge: 60 * 60 * 24 * 365 * 10, // 10 years
+        });
 
         return response;
 
