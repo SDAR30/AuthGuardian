@@ -3,11 +3,20 @@ import axios from "axios";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ProfilePage() {
     const router = useRouter();
-    const [data, setData] = useState('');
+
+    type UserData = {
+        _id?: string;
+        username?: string;
+        email?: string;
+        isVerified?: boolean;
+        isAdmin?: boolean;
+    };
+
+    const [data, setData] = useState<UserData>({});
 
     const logout = async () => {
         try {
@@ -22,34 +31,48 @@ export default function ProfilePage() {
 
     }
 
-    const getUserDetails = async () => {
-        const res = await axios.get('/api/users/me');
-        console.log("getUserDetails ", res.data)
-        setData(res.data.data.username)
+    // const getUserDetails = async () => {
+    //     const res = await axios.get('/api/users/me');
+    //     console.log("getUserDetails ", res.data)
+    //     setData(res.data.data.username)
 
-    }
+    // }
+
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+            try {
+                const res = await axios.get('/api/users/me');
+                console.log("getUserDetails ", res.data);
+                setData(res.data.data);
+            } catch (error) {
+                console.error("Error fetching user details:", error);
+            }
+        };
+
+        fetchUserDetails();
+    }, []);
 
 
-    return (<>
-        <div className="flex flex-col items-center mt-2">
-            <Link href="/">Home Page</Link>
-        </div>
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>Profile</h1>
-            <hr />
-            <p>Profile page</p>
-            <hr />
-            <h2 className="p-3 rounded bg-green-500">{!data ? "-----" : <Link href={`/profile/${data}`}>{data}</Link>}</h2>
-            <hr />
-            <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={logout}
-            >Log out</button>
+    return (
+        <>
+            <div className="flex flex-col items-center mt-2">
+                <Link href="/">Home Page</Link>
+            </div>
+            <div className="flex flex-col items-center justify-center min-h-screen py-2">
+                <h1 className="text-5xl m-3">{data.username}</h1>
+                <hr />
+                <p>Email: {data.email} </p>
+                <p>ID: {data._id}</p>
+                <hr />
+                <hr />
+                <h2 className="bg-purple-900 mt-4 hover:bg-purple-700 text-white py-2 px-4 rounded">
+                    {!data.username ? "-----" : <Link href={`/profile/${data.username}`}>Go to default profile page</Link>}
+                </h2>
+                <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={logout}
+                >Log out</button>
 
-            <button className="bg-purple-900 mt-4 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
-                onClick={getUserDetails}
-            >GET USER DETAILS</button>
-
-        </div>
-    </>
+            </div>
+        </>
     )
 }
