@@ -5,6 +5,8 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
 //   return NextResponse.redirect(new URL('/home', request.url))
     const path = request.nextUrl.pathname;
+
+    //public paths, you can visit them without the token
     const isPublicPaths = path === '/login' || path === '/signup';
     //either token exists, or get '';
     const token = request.cookies.get('token')?.value || '';
@@ -30,5 +32,5 @@ export function middleware(request: NextRequest) {
  
 // See "Matching Paths" below to learn more. match to run middleware
 export const config = {
-  matcher: ['/', '/profile','/login','/signup',],
+  matcher: ['/', '/profile','/login','/signup','/verifyemail',],
 }

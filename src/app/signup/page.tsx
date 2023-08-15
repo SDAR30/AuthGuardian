@@ -18,7 +18,7 @@ export default function SignupPage() {
             setLoading(true);
             const response = await axios.post("/api/users/signup", user);
             console.log('signuppp success', response.data)
-            router.push('/login');
+            router.push('/profile');
             
         } catch (error: any) {
             console.log('error in onSignup catcH: ',error )
