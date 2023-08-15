@@ -30,7 +30,10 @@ export default function ProfilePage() {
     }
 
 
-    return (
+    return (<>
+        <div className="flex flex-col items-center mt-2">
+            <Link href="/">Home Page</Link>
+        </div>
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1>Profile</h1>
             <hr />
@@ -47,5 +50,6 @@ export default function ProfilePage() {
             >GET USER DETAILS</button>
 
         </div>
+    </>
     )
 }
