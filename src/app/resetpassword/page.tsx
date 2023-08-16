@@ -8,25 +8,30 @@ export default function ResetPasswordPage() {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
     const [mailSent, setMailSent] = useState(false);
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
 
     const onResetPassword = async () => {
         try {
             setLoading(true);
             const response = await axios.post("/api/users/resetpassword", user);
             setMailSent(true);
+            console.log("reset password email sent")
         } catch (error: any) {
+            console.log('error caught in app/resetpassword: ',error)
         } finally {
             setLoading(false);
         }
     }
 
     useEffect(() => {
-        if (user.email.length > 0) {
+        if (emailRegex.test(user.email)) {
             setButtonDisabled(false);
         } else {
             setButtonDisabled(true);
         }
     }, [user]);
+
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
