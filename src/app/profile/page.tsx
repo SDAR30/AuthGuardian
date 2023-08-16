@@ -68,9 +68,15 @@ export default function ProfilePage() {
                 <h2 className="bg-purple-900 mt-4 hover:bg-purple-700 text-white py-2 px-4 rounded">
                     {!data.username ? "-----" : <Link href={`/profile/${data.username}`}>Go to default profile page</Link>}
                 </h2>
+
+                <h2 className="bg-yellow-500 mt-4 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                <Link href="/resetpassword">Change password</Link></h2>
+
                 <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={logout}
                 >Log out</button>
+
+
 
             </div>
         </>
