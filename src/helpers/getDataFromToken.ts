@@ -3,8 +3,8 @@ import jwt from "jsonwebtoken";
 
 export const getDataFromToken = (request: NextRequest) => {
     try {
+        console.log('All cookies: ', request.cookies);
         const token = request.cookies.get('token')?.value || '';
-        if (!token) throw new Error("TOKEN NoT PROVIDED");
         console.log('from getDataFromToken: token: ', token)
         const decodedToken: any = jwt.verify(token, process.env.TOKEN_SECRET!);
         console.log('decoding token: ', decodedToken)
