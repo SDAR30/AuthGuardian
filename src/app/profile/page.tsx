@@ -73,13 +73,14 @@ export default function ProfilePage() {
             const emailType = "VERIFY";
             const userID = _id;
             toast.loading('verifying email...')
-            const emailSender = await axios.post('/api/users/sendEmail', { email, emailType, userID })
+            const emailSender = await axios.post('/api/users/verifystatus', { email, emailType, userID })
             console.log("handleVerify: email sender: ", emailSender)
             toast.dismiss();
-            toast.success('EMAIL VERIIFEDD SUCESFULLY');
+            toast.success('EMAIL was verified!');
             setVerified(true);
 
         } catch (error: any) {
+            toast.dismiss();
             console.log("error in handleVerify: ", error)
         }
 
