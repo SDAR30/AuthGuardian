@@ -114,13 +114,6 @@ export default function ProfilePage() {
                 <Link href="/">Home Page</Link>
             </div>
             <div className="flex flex-col items-center justify-center min-h-screen py-2">
-                <p className='text-sm ml-[5.55rem] mt-2'>{
-                    verified ? (
-                        <p className='text-green-500'>Verified</p>
-                    ) : (
-                        <button onClick={handleVerify}>Click here to Verify</button>
-                    )
-                }</p>
                 <hr />
                 <div className='mt-10 flex flex-col text-white justify-center items-center'>
                     <p className='text'>User ID: {data ? `${data}` : ""}</p>
@@ -131,6 +124,17 @@ export default function ProfilePage() {
                     Go to profile
                 </button>
 
+                <div>
+                    <h2 className="bg-pink-500 mt-4 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">
+                        <Link href="/verifyemail">Verify Email (original)</Link></h2>
+                    <p className='text-sm ml-[5.55rem] mt-2'>{
+                        verified ? (
+                            <p className="bg-green-400  text-white font-bold py-1 px-2 rounded">Verified!</p>
+                        ) : (
+                            <button className="bg-red-800 mt-4 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded" onClick={handleVerify}>Verification status</button>
+                        )
+                    }</p>
+                </div>
                 <h2 className="bg-yellow-500 mt-4 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                     <Link href="/resetpassword">Change password</Link></h2>
 
