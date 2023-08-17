@@ -1,8 +1,8 @@
 # AuthGuardian
 
-![AuthGuardian Banner](https://images.vexels.com/media/users/3/142807/isolated/lists/b365e270983e25588edff94919bb3d76-shield-emblem.png)
+![AuthGuardian Banner](https://img.freepik.com/free-vector/security-shield-vector-cyber-security-technology_53876-112196.jpg?w=400)
 
-A robust and secure login authentication template built with Next.js, MongoDB, and TypeScript. Integrated with password reset and email verification capabilities via a cloud-based email service, ensuring a seamless and secure authentication experience.
+A robust and secure login authentication template built with Next.js, MongoDB, and TypeScript. Integrated with password reset, email verification, and notification capabilities via a cloud-based email service, ensuring a seamless and secure authentication experience.
 
 ## Features
 
