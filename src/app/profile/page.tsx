@@ -3,7 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function ProfilePage() {
     const router = useRouter();
@@ -31,26 +31,26 @@ export default function ProfilePage() {
 
     }
 
-    // const getUserDetails = async () => {
-    //     const res = await axios.get('/api/users/me');
-    //     console.log("getUserDetails ", res.data)
-    //     setData(res.data.data.username)
+    const getUserDetails = async () => {
+        const res = await axios.get('/api/users/me');
+        console.log("getUserDetails ", res.data)
+        setData(res.data.data)
 
-    // }
+    }
 
-    useEffect(() => {
-        const fetchUserDetails = async () => {
-            try {
-                const res = await axios.get('/api/users/me');
-                console.log("getUserDetails ", res.data);
-                setData(res.data.data);
-            } catch (error) {
-                console.error("Error fetching user details:", error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchUserDetails = async () => {
+    //         try {
+    //             const res = await axios.get('/api/users/me');
+    //             console.log("getUserDetails ", res.data);
+    //             setData(res.data.data);
+    //         } catch (error) {
+    //             console.error("Error fetching user details:", error);
+    //         }
+    //     };
 
-        fetchUserDetails();
-    }, []);
+    //     fetchUserDetails();
+    // }, []);
 
 
     return (
@@ -60,9 +60,9 @@ export default function ProfilePage() {
             </div>
             <div className="flex flex-col items-center justify-center min-h-screen py-2">
                 <h1 className="text-5xl m-3">{data.username}</h1>
-                <hr />
+                {/* <hr />
                 <p>Email: {data.email} </p>
-                <p>ID: {data._id}</p>
+                <p>ID: {data._id}</p> */}
                 <hr />
                 <hr />
                 <h2 className="bg-purple-900 mt-4 hover:bg-purple-700 text-white py-2 px-4 rounded">
@@ -70,13 +70,15 @@ export default function ProfilePage() {
                 </h2>
 
                 <h2 className="bg-yellow-500 mt-4 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                <Link href="/resetpassword">Change password</Link></h2>
+                    <Link href="/resetpassword">Change password</Link></h2>
 
                 <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={logout}
                 >Log out</button>
 
-
+                <button className="bg-green-300 mt-4 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={getUserDetails}>  get username
+                </button>
 
             </div>
         </>
