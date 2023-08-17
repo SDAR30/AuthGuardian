@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
         const token = jwt.sign(tokenData, process.env.TOKEN_SECRET!, { expiresIn: "1y" });
 
         response.cookies.set("token", token, {
-            httpOnly: true, //cookie can only be accessed by server
+            //httpOnly: true, //cookie can only be accessed by server
         })
         // Set the isNewUser cookie
         response.cookies.set("isNewUser", "true", {
