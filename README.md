@@ -1,34 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AuthGuardian
+
+![AuthGuardian Banner](https://images.vexels.com/media/users/3/142807/isolated/lists/b365e270983e25588edff94919bb3d76-shield-emblem.png)
+
+A robust and secure login authentication template built with Next.js, MongoDB, and TypeScript. Integrated with password reset and email verification capabilities via a cloud-based email service, ensuring a seamless and secure authentication experience.
+
+## Features
+
+- **Secure Authentication**: User passwords are securely hashed using `bcryptjs`.
+- **Password Reset**: Users can reset their passwords in case they forget them.
+- **Email Verification**: Ensure genuine users with email verification through Mailtrap.
+- **Modern UI**: Styled using Tailwind, providing a sleek and modern look.
+- **Feedback System**: Using `toast` to provide feedback to users.
+- **Type Safety**: Written in TypeScript, ensuring type safety and reducing runtime errors.
+
+## Tech Stack
+
+- **Frontend**: Next.js with Tailwind CSS
+- **Backend**: Next.js API Routes
+- **Database**: MongoDB
+- **Type Checking**: TypeScript
+- **Password Hashing**: bcryptjs
+- **Feedback**: Toast
+- **Email Service**: Mailtrap
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js
+- MongoDB instance (local or cloud)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/sdar30/authguardian.git
+cd authguardian
+```
+
+2. Install the dependencies:
+
+```bash
+npm install
+```
+
+3. Set up your environment variables. Create a `.env` file in the root directory and fill in your values:
+
+```
+MONGO_URL=YOUR_MONGODB_CONNECTION_STRING
+TOKEN_SECRET=YOUR_JWT_SECRET
+DOMAIN=YOUR_DOMAIN
+EMAIL_USER=YOUR_SMTP_USER
+EMAIL_PASS=YOUR_SMTP_PASSWORD
+EMAIL_HOST=YOUR_SMTP_SERVER
+EMAIL_SERVER=YOUR_SERVER
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` in your browser to see the app running.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The project is currently deployed on Vercel. You can deploy it to your own Vercel instance or any other platform that supports Node.js. 
 
-## Learn More
+[Live Construction Demo](https://authguardian.vercel.app/)
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License.
