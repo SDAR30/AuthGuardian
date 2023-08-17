@@ -44,7 +44,7 @@ export default function ProfilePage() {
             if (response.data.success) {
                 toast.success("Redirecting....")
             }
-            const userId = response.data.user._id;
+            const userId = response.data.data._id;
 
             router.push(`/profile/${userId}`)
 
@@ -56,7 +56,7 @@ export default function ProfilePage() {
     const getUser = async () => {
         try {
             const response: any = await fetchUser();
-            const userId = response.data.user._id;
+            const userId = response.data.data._id;
 
             setData(userId)
 
@@ -68,8 +68,8 @@ export default function ProfilePage() {
     const handleVerify = async () => {
         try {
             const response: any = await fetchUser();
-            setVerified(response.data.user.isVerified);
-            const { email, _id } = await response.data.user;
+            setVerified(response.data.data.isVerified);
+            const { email, _id } = await response.data.data;
             const emailType = "VERIFY";
             const userID = _id;
             toast.loading('verifying email...')
@@ -123,13 +123,13 @@ export default function ProfilePage() {
                 }</p>
                 <hr />
                 <div className='mt-10 flex flex-col text-white justify-center items-center'>
-                    <p className='text'>User Details: {data ? `${data}` : "null"}</p>
-                    <button disabled={data ? true : false} className=' disabled:opacity-50 text-sm w-[150px] mt-3 bg-orange-500 text-black rounded-full px-4 py-2' onClick={getUser}>Get User Details</button>
+                    <p className='text'>User ID: {data ? `${data}` : ""}</p>
+                    <button disabled={data ? true : false} className='bg-green-500 mt-4 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' onClick={getUser}>Get User ID</button>
                 </div>
 
-                <div className='mt-5'>
-                    <button onClick={userProfile} className='text-sm mt-3 bg-orange-500 text-black rounded-full px-2 py-2'>Go to my profile</button>
-                </div>
+                <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={userProfile} >
+                    Go to profile
+                </button>
 
                 <h2 className="bg-yellow-500 mt-4 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                     <Link href="/resetpassword">Change password</Link></h2>
